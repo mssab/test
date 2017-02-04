@@ -1,0 +1,35 @@
+git clone https://github.com/bro-holding/GoJames-AndroidApp.git
+git add . 
+git commit - m 'update'
+
+git remote origin https://github.com/bro-holding/GoJames-AndroidApp.git
+
+git push origin master
+--------------nach dem anderen bearbeitet--------
+git pull origin master
+------------------delete----------
+git rm -r --cached Folder Name
+git commit -m 'remove Folder'
+git push origin master
+
+------back to a commit------
+1-create branch
+git checkout -b name of branch
+2-view branches
+git branch
+2-switch to another branche 
+git checkout name of branch
+3- show commits
+git log 
+4- back working to new branch
+git push origin name of branch
+5-git all branches
+git branch -a
+6-go work to another branch 
+git checkout -b 'branch name' 'origin /name of branch'
+
+
+
+
+
+
