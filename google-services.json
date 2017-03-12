@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "463200196646",
+    "project_id": "gojames-orange"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463200196646:android:8deeb2dbb855d5fb",
+        "android_client_info": {
+          "package_name": "com.go_james.gojames_orangeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "463200196646-rs747dh7ps67u63u4a20s3oj62r18msu.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "463200196646-57oannmn6vrdtiscnolr117ora313npf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.go_james.gojames_orangeapp",
+            "certificate_hash": "ee1bec135ca447857ca4765c3d9897a4478a5484"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwnxuN68wydyFhtuOJcPv5stxNCJF6ZIE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
