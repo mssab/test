@@ -1,0 +1,25 @@
+/*
+Convert Android Apk to source code
+*/
+ 
+ options
+ 1- chnage .APK file to .ZIP file and extract it
+ 2- use APK tool
+ http://ibotpeaches.github.io/Apktool/
+ 3- Convert  APK to soure code using dex2jar
+https://sourceforge.net/projects/dex2jar/files/
+
+Run this command to convert .APK to .RAR
+Mac
+./d2j-dex2jar.sh -f -o output_jar.jar file.apk
+Windows
+d2j-dex2jar.bat file.apk
+
+ 
+
+IDE view source .RAR file
+http://jd.benow.ca
+
+
+4- GET APK from play store
+https://apkpure.com
