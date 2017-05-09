@@ -7,10 +7,10 @@ try {
 	msg.Body = beschreib.Text;
 	msg.IsBodyHtml = true;
 	SmtpClient smtp = new SmtpClient();
-	smtp.Host = ("smtp.1und1.de");
+	smtp.Host = ("smtp.und.de");
 	System.Net.NetworkCredential networcard = new System.Net.NetworkCredential();
 	networcard.UserName = "postausgangsservice@gate-internet.de";
-	networcard.Password = "pt7#836%AcF!h6d$";
+	networcard.Password = "password";
 	smtp.UseDefaultCredentials = true;
 	smtp.Credentials = networcard;
 	smtp.Port = 587;
