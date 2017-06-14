@@ -267,3 +267,20 @@
         Return ergebnis
     End Function
 	
+	'*** filter search function 
+	 Protected Sub filter_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles filter.Click
+        Dim vor, nach As String
+        vor = ""
+        nach = ""
+        If vorname.Text.Length = 0 Then
+        Else
+            vor = " and (vorname LIKE '%" & vorname.Text & "%') "
+        End If
+        If nachname.Text.Length = 0 Then
+        Else
+
+            nach = " or (nachname LIKE '%" & nachname.Text & "%') "
+        End If
+        SqlDataSource1.SelectCommand = "SELECT Anrede, Vorname, Nachname, EMail, id, Firma, Teilnahme, Rueckmeldung FROM Canon_Einladung WHERE (Code_vergeben = 1) " & vor & nach & " and id > 7 ORDER BY Nachname"
+        GridView1.DataBind()
+    End Sub
