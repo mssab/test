@@ -1,8 +1,10 @@
 ﻿
 Imports System.Data.SqlClient
 Imports System.Drawing
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Net
+
 
 
 Partial Class Ausgabe
@@ -16,6 +18,7 @@ Partial Class Ausgabe
     Dim inject As String = ""
     Dim fotodel As String
     Dim hash As String = ""
+
 
 
     Protected Sub druckbtn_Click(sender As Object, e As EventArgs) Handles druckbtn.Click
@@ -79,6 +82,7 @@ Partial Class Ausgabe
                 fotodel = "ftp://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & ""
                 TargetFoto.Text = inject & resultload.Text
             End If
+            dummy = a
 
         End While
         resp.Close()
@@ -107,7 +111,14 @@ Partial Class Ausgabe
 
 
     End Sub
+
     Public Sub sende_mail()
+        'Dim photo As String = "http://www.gate-multimedia.de/Fotobooth/Device1/05_10_2017/Bild2.jpg"
+        'Dim stream As Stream = New FileStream(photo, FileMode.Open, FileAccess.Read)
+        'GenerateThumbnails(1.0, stream, "~/img/E.jpg")
+
+        'GenerateThumbnails(1.0, readwrite(photo), "~/img/Mail.jpg")
+
         inhalt("Name")
         Dim instance As New Net.Mail.SmtpClient("127.0.0.1")
         Dim text As String
@@ -142,15 +153,19 @@ Partial Class Ausgabe
 
         'text = text & "<tr><td style=""width:272px;vertical-align:top;"">Diese SWIPE Funktion findest Du auch in den neuen Vodafone Young-Tarifen, wo Du flexibel deine Flats gegen mehr Daten tauschen kannst. Jeden Monat anders und ohne Mehrkosten.<br />Das Erklärvideo haben wir hier für Dich online gestellt. Schau gleich rein und informiere Dich.<br /><br /><a href=""http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & """><img src=""http://www.weihnachtsfoto.vodafone-consumer.de/img/button_zum_video.png"" alt="""" /></a></td>"
 
-        text = text & "<tr><td style=""width:272px;vertical-align:top;"">Du hast an der Selfie Box in Deinem Vodafone Shop in Oberhausen Dein spezielles Selfie gemacht.<br />Schau es Dir an, downloade es oder teile es direkt auf Facebook mit Deinen Freunden. Vielleicht haben Deine Freunde ebenfalls Lust auf Ihr Vodafone Selfie?<br /><br />Wir wünschen Dir viel Freude mit dem Bild!<br /><br/><br /><br/><br/><br/>Beste Grüße <br/>Dein Vodafone Promotion-Team<br /><br /></td>"
-        text = text & "<td style=""width:272px;vertical-align:top;text-align:right;""><a href=""http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """><img src=""http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & """ border=""0"" alt="""" /></a></td></tr>"
+        text = text & "<tr><td style=""width:272px;vertical-align:top;"">Du hast an der Selfie Box in Deinem Vodafone Shop in Oberhausen Dein spezielles Selfie gemacht.<br /><p>Schau es Dir an, downloade es oder teile es direkt auf Facebook mit Deinen Freunden. Vielleicht haben Deine Freunde ebenfalls Lust auf Ihr Vodafone Selfie?</p><br/>Wir wünschen Dir viel Freude mit dem Bild!<br/><br/>Beste Grüße <br/>Dein Vodafone Promotion-Team<br /><br /><a href=""" & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """/><img src=""" & "http://photobooth.gate-internet.de/img/Button_Zu_Deinem_Foto.png"" /></a></td>"
+
+        text = text & "<td style=""width:272px;vertical-align:top;text-align:right;""><a href=""http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """><img src=""http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/Small/" & a & """ border=""0"" alt="""" /></a></td></tr><br/>"
+
+        'text = text & "<td style=""width:272px;vertical-align:top;text-align:right;""><a href=""http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """><img src=""http://photobooth.gate-internet.de/img/Mail.jpg"" border=""0"" alt="""" /></a></td></tr>"
+
         'text = text & "<td style=""width:300px;height:auto;vertical-align:right;""><a href=""" & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """/><img src=""" & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & " style=""float: right; width:300; height:auto;"" "" /></a></td>"
         'text = text & "<tr><td><a href=""" & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & "><img src=""" & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & """ border=""0"" alt="""" /></a></td></tr>"
         'text = text & "<td style=""width:200px;vertical-align:top;text-align:right;""><a href=""" & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & "><img src=" & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & """ border=""0"" alt="""" /></a></td>"
 
         'text = text & "<tr><td style=""width:272px;vertical-align:top;""><a href=""" & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & "><img src=""" & " http://photobooth.gate-internet.de/img/Button_Zu_Deinem_Foto.png "" /></a></td></tr>"
 
-        text = text & "<tr><td><a href=""" & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """/><img src=""" & "http://photobooth.gate-internet.de/img/Button_Zu_Deinem_Foto.png"" /></a></td></tr>"
+        'text = text & "<tr><td style=""verical-align:top;""><a href=""" & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & """/><img src=""" & "http://photobooth.gate-internet.de/img/Button_Zu_Deinem_Foto.png"" /></a></td></tr>"
 
         text = text & "</table>"
         text = text & "<hr style=""width:544px; color:#CCCCCC; margin-top:14px; margin-bottom:14px;"" />"
@@ -181,15 +196,15 @@ Partial Class Ausgabe
         text = text & "                                                            style=""text-decoration: none; color: #e60000; font-weight: bold;"">&gt;</a> &nbsp;&nbsp;"
         text = text & "                                            <a href=""http://www.vodafone.de"" style=""text-decoration: none; color: #4A4D4E;""><b>vodafone.de</b></a>&nbsp;<a"
         text = text & "                                                href=""http://www.vodafone.de"" style=""text-decoration: none; color: #e60000; font-weight: bold;"">&gt;</a><br>Copyright"
-        text = text & "                                            © 2016 Vodafone GmbH"
+        text = text & "                                            © 2017 Vodafone GmbH"
         text = text & "                                        </p>"
 
 
         'text = text & "                                        Ordnername: " & ordnername & "<br />"
         'text = text & "                                        Dummy: " & dummy & "<br />"
-        'text = text & "                                        Bildlink: " & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/" & dummy & "<br />"
+        'text = text & "                                        Bildlink: " & "http://www.gate-multimedia.de/Fotobooth/" & ordnername & "/Small/" & dummy & "<br />"
         'text = text & "                                        Bildlink mit Hash: " & "http://photobooth.gate-internet.de/foto.aspx?id=" & hash & "<br />"
-        text = text & "                                        </p>"
+        'text = text & "                                        </p>"
 
 
         text = text & "                                    </td>"
@@ -216,7 +231,7 @@ Partial Class Ausgabe
 
         Try
             Dim de, da As Net.Mail.MailAddress
-            de = New Net.Mail.MailAddress("swipe-it@vodafone-consumer.de", "Dein Foto")
+            de = New Net.Mail.MailAddress("Selfibox@vodafone-consumer.de", "Dein Foto")
             da = New Net.Mail.MailAddress(email.Text)
             Dim message As New Net.Mail.MailMessage(de, da)
             message.Subject = mailsub
@@ -517,5 +532,89 @@ Partial Class Ausgabe
     End Function
 
 
+    Public Function IfWReqFileExist(ByVal strUri As String, ByVal wcode As String) As Boolean
+        Dim checker As Integer = 0
+        Try
+            Dim WReq As WebRequest = WebRequest.Create(strUri)
+            Dim WResp As WebResponse = WReq.GetResponse()
+
+            If (WResp.ResponseUri.ToString.Contains(wcode)) Then
+                checker = 1
+            Else
+                checker = 0
+            End If
+
+            WResp.Close()
+        Catch
+
+        End Try
+        If checker = 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Protected Sub upload(ByVal upload As FileUpload, ByVal filePath As String)
+        Dim inputStr As Stream = upload.PostedFile.InputStream
+
+        filePath = Server.MapPath("img/E.jpg")
+        upload.SaveAs(filePath)
+
+
+    End Sub
+
+    Private Sub GenerateThumbnails(ByVal scaleFactor As Double, ByVal sourcePath As Stream, ByVal targetPath As String)
+        Using image As Image = Image.FromStream(sourcePath)
+            Dim newWidth As Integer = CInt(image.Width * scaleFactor)
+            Dim newHeight As Integer = CInt(image.Height * scaleFactor)
+            Dim thumbnailImg As Bitmap = New Bitmap(newWidth, newHeight)
+            Dim thumbGraph As Graphics = Graphics.FromImage(thumbnailImg)
+            thumbGraph.CompositingQuality = CompositingQuality.HighQuality
+            thumbGraph.SmoothingMode = SmoothingMode.HighQuality
+            thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic
+            Dim imageRectangle As Rectangle = New Rectangle(0, 0, newWidth, newHeight)
+            thumbGraph.DrawImage(image, imageRectangle)
+            thumbnailImg.Save(targetPath, image.RawFormat)
+        End Using
+    End Sub
+
+
+    Function readwrite(ByVal url As String)
+        ' Specify a file to read from and to create.
+        Dim pathSource As String = url
+        Dim pathNew As String = "~/img/Th.jpg"
+        Try
+            Using fsSource As FileStream = New FileStream(pathSource, _
+                FileMode.Open, FileAccess.Read)
+                ' Read the source file into a byte array.
+                Dim bytes() As Byte = New Byte((fsSource.Length) - 1) {}
+                Dim numBytesToRead As Integer = CType(fsSource.Length, Integer)
+                Dim numBytesRead As Integer = 0
+
+                While (numBytesToRead > 0)
+                    ' Read may return anything from 0 to numBytesToRead.
+                    Dim n As Integer = fsSource.Read(bytes, numBytesRead, _
+                        numBytesToRead)
+                    ' Break when the end of the file is reached.
+                    If (n = 0) Then
+                        Exit While
+                    End If
+                    numBytesRead = (numBytesRead + n)
+                    numBytesToRead = (numBytesToRead - n)
+
+                End While
+                numBytesToRead = bytes.Length
+
+                ' Write the byte array to the other FileStream.
+                Using fsNew As FileStream = New FileStream(pathNew, _
+                    FileMode.Create, FileAccess.Write)
+                    fsNew.Write(bytes, 0, numBytesToRead)
+                End Using
+            End Using
+        Catch ioEx As FileNotFoundException
+            Console.WriteLine(ioEx.Message)
+        End Try
+    End Function
 
 End Class

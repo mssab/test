@@ -11,7 +11,21 @@
   <%--<meta property="fb:app_id" content="1718540968383015" />
   <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
   <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>--%>   
-      
+     
+     
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $('#Thm').attr('src', '<%inhalt("Bild_Name")%>');
+
+         })
+
+     </script>
+
+
+
+
+
   <link href="img/favicon.ico" rel="shortcut icon" />
   
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
