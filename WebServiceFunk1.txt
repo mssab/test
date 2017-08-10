@@ -1,0 +1,18 @@
+ <WebMethod()>
+    Public Function webSelect(ByVal pass As String, ByVal user As String) As String
+        Dim Command As String
+        Dim id As Integer = 0
+        Command = "SELECT id FROM promotion_login WHERE passwort = '" & pass & "' and anmeldename = '" & user & "' "
+        Dim con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("promotion").ConnectionString)
+        con.Open()
+        Try
+            Dim commando As New SqlCommand(Command, con)
+            id = commando.ExecuteScalar
+        Catch ex As Exception
+
+        End Try
+
+
+
+        Return id
+    End Function
