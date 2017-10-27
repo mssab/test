@@ -1,0 +1,1 @@
+DBCC CHECKIDENT ('[Table]', RESEED, 0);
