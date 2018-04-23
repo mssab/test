@@ -58,11 +58,11 @@ Partial Class Ausgabe
         req.Method = WebRequestMethods.Ftp.ListDirectory
         Select Case ordnername
             Case "Device1"
-                req.Credentials = New NetworkCredential("Fotobooth1", "qH4nLA29!")
+            req.Credentials = New NetworkCredential("Fotobooth1", "passwort")
             Case "Device2"
-                req.Credentials = New NetworkCredential("Fotobooth2", "Sw2b7Vgp!")
+            req.Credentials = New NetworkCredential("Fotobooth2", "passwort")
             Case "Device3"
-                req.Credentials = New NetworkCredential("Fotobooth3", "uF3cX8w5!")
+            req.Credentials = New NetworkCredential("Fotobooth3", "passwort")
             Case Else
                 Response.Redirect("https://vodafone.com")
         End Select
