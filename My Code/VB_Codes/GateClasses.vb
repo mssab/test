@@ -68,6 +68,21 @@ Public Class GateClasses
 
     End Function
 
+    'weiterleiten nach bestimmte Seconde zum Url
+    Shared Sub weiterleiten(seconde As String, url As String)
+        HttpContext.Current.Response.AddHeader("REFRESH", "" & seconde & ";URL=" & url & "")
+    End Sub
+
+    'ruf javascript in Load VB , vorher musst du ein java funktion in aspx setzten 
+    Shared Sub call_Javascript(page As Page, javaCode As String)
+        page.Controls.Add(New LiteralControl(javaCode)) ' EX: javaCode="<script type='text/javascript'>openfeedback();</script>"
+
+        'Function openfeedback() {
+        'openCity_unten(event, 'mitte_unten', 'button_unten_mitte');document.getElementById('unten_rechts').className += ' active'; return false;
+        '}
+        '</script>
+    End Sub
+
     'Checkbox Funktion 'ja' oder 'nein'
     Function checker(ByVal cbox As CheckBox) As String
         Dim antwort As String = ""
@@ -115,7 +130,7 @@ Public Class GateClasses
     End Function
 
     'Text Formatieren
-    Public Function format(ByVal str As String) As String
+    Public Function formatierung(ByVal str As String) As String
         str = str.Replace("'", "`")
         str = str.Replace("/", " ")
         Return str
@@ -196,8 +211,7 @@ Public Class GateClasses
     End Function
 
     'bei dieses Funktion  alle Variable sind wie geschriebn haben !
-    Public Sub belegung_Portal(produkte As Table, Besuchsfragen As Table, session As Object, Fragen As Table, weihnachtsset As Table,
-                        facings As Table, panel_sonstiges As Panel, Panel_Auswertung As Panel)
+    Public Sub belegung_Portal(produkte As Table, Besuchsfragen As Table, session As Object, Fragen As Table, weihnachtsset As Table, facings As Table, panel_sonstiges As Panel, Panel_Auswertung As Panel)
         Dim i As Integer = 0
 
         '*** Belegung der Besuchsfragen ***
@@ -462,12 +476,6 @@ Public Class GateClasses
 
 
     End Sub
-
-    'weiterleiten nach bestimmte Seconde zum Url
-    Shared Sub weiterleiten(seconde As String, url As String)
-        HttpContext.Current.Response.AddHeader("REFRESH", "" & seconde & ";URL=" & url & "")
-    End Sub
-
 
 
 
