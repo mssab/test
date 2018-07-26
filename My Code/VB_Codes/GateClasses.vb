@@ -1,7 +1,9 @@
 ﻿Imports System.Data
 Imports System.Data.OleDb
 Imports System.Data.SqlClient
+Imports System.IO
 Imports System.Security.Cryptography
+Imports Microsoft.SqlServer
 Imports Microsoft.VisualBasic
 
 
@@ -190,6 +192,17 @@ Public Class GateClasses
         Return Res
     End Function
 
+    'diese Funktion kann man die file in server prüfen ob da ist ! 
+    Public Sub bild_labeltext(ByVal bildname As String, ByVal lab As Label, Server_MapPath As String, QueryString As String)
+
+        Dim stamm_id As String = QueryString
+        If File.Exists(Server_MapPath) Then  ' ex: Server.MapPath("~/upload/" & stamm_id & "/" & bildname & "")
+            lab.Text = "<a href=""" & Server_MapPath & "/" & bildname & """ target=""_blank"" style=""color:#000000;"" id=""example1"">Bilder ansehen</a>"
+        Else
+            lab.Text = "keine Bilder verfügbar"
+        End If
+
+    End Sub
     Public Function updatte_funktion(command As String) As Integer
         Dim datum As String
         datum = Date.Today.ToShortDateString
