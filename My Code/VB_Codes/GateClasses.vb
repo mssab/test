@@ -7,6 +7,7 @@ Imports Microsoft.SqlServer
 Imports Microsoft.VisualBasic
 
 
+
 Public Class GateClasses
     'connectionString
     Dim con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("reportingConnectionString").ConnectionString)
@@ -31,6 +32,20 @@ Public Class GateClasses
         Return id
     End Function
 
+    'fill the Gridview from DB in 
+    Public Sub BindData_from_Gridview(Grid As GridView, Command As String, con As SqlConnection)
+        con.Open()
+        Dim adp As SqlDataAdapter = New SqlDataAdapter(Command, con)
+        Dim dataTable As DataTable = New DataTable()
+        adp.Fill(dataTable)
+
+        If dataTable.Rows.Count > 0 Then
+            Grid.DataSource = dataTable
+            Grid.DataBind()
+        End If
+        con.Close()
+        con.Dispose()
+    End Sub
     '**Anmeldung Funktion mit 2 Variable für login setie 
     Public Function anmeldung(email As String, passwort As String, Tablename As String) As Integer
         Dim id As Integer
