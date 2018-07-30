@@ -84,7 +84,12 @@ Public Class GateClasses
         Return id
 
     End Function
-
+    'AlertBox Javascript
+    Public Sub AlertBox(ByVal Message As String)
+        System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">" & vbCrLf)
+        System.Web.HttpContext.Current.Response.Write("alert(""" & Message & """)" & vbCrLf)
+        System.Web.HttpContext.Current.Response.Write("</SCRIPT>")
+    End Sub
     'weiterleiten nach bestimmte Seconde zum Url
     Shared Sub weiterleiten(seconde As String, url As String)
         HttpContext.Current.Response.AddHeader("REFRESH", "" & seconde & ";URL=" & url & "")
