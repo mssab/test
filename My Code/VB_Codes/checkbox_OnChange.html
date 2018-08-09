@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+Checkbox: <input type="checkbox" onclick="check()" id="1">
+Checkbox: <input type="checkbox" onclick="check()" id="2">
+Checkbox: <input type="checkbox" onclick="check()" checked="true" id="3">
+
+<script>
+function check() {
+if (document.getElementById("1").checked == false && document.getElementById("2").checked == false){
+    document.getElementById("3").checked = true;
+
+}
+}
+
+</script>
+
+</body>
+</html>
