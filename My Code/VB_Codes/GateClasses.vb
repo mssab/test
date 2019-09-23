@@ -7,7 +7,6 @@ Imports Microsoft.SqlServer
 Imports Microsoft.VisualBasic
 
 
-
 Public Class GateClasses
     'connectionString
     Dim con As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("reportingConnectionString").ConnectionString)
@@ -46,6 +45,8 @@ Public Class GateClasses
         con.Close()
         con.Dispose()
     End Sub
+	
+		
     '**Anmeldung Funktion mit 2 Variable für login setie 
     Public Function anmeldung(email As String, passwort As String, Tablename As String) As Integer
         Dim id As Integer
@@ -84,11 +85,10 @@ Public Class GateClasses
         Return id
 
     End Function
-    'AlertBox Javascript
-    Public Sub AlertBox(ByVal Message As String)
-        System.Web.HttpContext.Current.Response.Write("<SCRIPT LANGUAGE=""JavaScript"">" & vbCrLf)
-        System.Web.HttpContext.Current.Response.Write("alert(""" & Message & """)" & vbCrLf)
-        System.Web.HttpContext.Current.Response.Write("</SCRIPT>")
+    'Refresh Parent Page 
+    Shared sub ReloadParentPage()
+        ClientScript.RegisterStartupScript([GetType](), "Load", "<script type='text/javascript'>window.parent.location.href = window.parent.location.href; </script>")
+        
     End Sub
     'weiterleiten nach bestimmte Seconde zum Url
     Shared Sub weiterleiten(seconde As String, url As String)
@@ -98,7 +98,7 @@ Public Class GateClasses
     'ruf javascript in Load VB , vorher musst du ein java funktion in aspx setzten 
     Shared Sub call_Javascript(page As Page, javaCode As String)
         page.Controls.Add(New LiteralControl(javaCode)) ' EX: javaCode="<script type='text/javascript'>openfeedback();</script>"
-
+        
         'Function openfeedback() {
         'openCity_unten(event, 'mitte_unten', 'button_unten_mitte');document.getElementById('unten_rechts').className += ' active'; return false;
         '}
@@ -158,6 +158,7 @@ Public Class GateClasses
         Return str
     End Function 'Text Formatieren
 
+	
 
     'Import Excel Datei und exportiert es To GridView 
     Protected Sub ExportToGrid(ByVal DataSource As String, ByVal Gridview As GridView, ImportName As String)
@@ -356,6 +357,7 @@ Public Class GateClasses
                 Next
                 produkte.FindControl("Header_Bestand").Visible = False
             End If
+				
             'If zaehler_Verkauf = 0 Then
             '    For j = 0 To 29
             '        Produkte.Rows(j).Cells(2).Visible = False
@@ -509,7 +511,5 @@ Public Class GateClasses
 
 
     End Sub
-
-
 
 End Class
